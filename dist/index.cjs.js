@@ -2446,10 +2446,6 @@ var socials = [
                 label: "Bahasa Indonesia",
                 href: "https://t.me/BenTokenFinanceIndonesia",
             },
-            // {
-            //   label: "中文",
-            //   href: "https://t.me/goosefinancechinese",
-            // },
             // // {
             // //   label: "Tiếng Việt",
             // //   href: "https://t.me/PancakeSwapVN",
@@ -2497,6 +2493,10 @@ var socials = [
             {
                 label: "Deutsche",
                 href: "https://t.me/BenTokenFinanceGerman",
+            },
+            {
+                label: "中文",
+                href: "https://t.me/bentokenchinese",
             },
         ],
     },
