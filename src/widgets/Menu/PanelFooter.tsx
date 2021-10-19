@@ -119,7 +119,7 @@ const PanelFooter: React.FC<Props> = ({
         </Flex>
       </SocialEntry>
       <SettingsEntry>
-        <Button variant="text" style={{float:"left"}} onClick={() => toggleTheme(!isDark)}>
+        <Button variant="text" style={{float:"left",width:'50%'}} onClick={() => toggleTheme(!isDark)}>
           {/* alignItems center is a Safari fix */}
           <Flex alignItems="center">
             <SunIcon color={isDark ? "textDisabled" : "text"} width="24px" />
@@ -129,7 +129,7 @@ const PanelFooter: React.FC<Props> = ({
             <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
           </Flex>
         </Button>
-        <div   style={{float:"right"}}>
+        <div   style={{float:"right",width:'50%'}}>
         <Dropdown
           position="top-right"
           target={
