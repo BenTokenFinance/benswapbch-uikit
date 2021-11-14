@@ -119,7 +119,7 @@ const PanelFooter: React.FC<Props> = ({
         </Flex>
       </SocialEntry>
       <SettingsEntry>
-        <Button variant="text" onClick={() => toggleTheme(!isDark)}>
+        <Button variant="text" style={{float:"left",width:'50%'}} onClick={() => toggleTheme(!isDark)}>
           {/* alignItems center is a Safari fix */}
           <Flex alignItems="center">
             <SunIcon color={isDark ? "textDisabled" : "text"} width="24px" />
@@ -129,7 +129,8 @@ const PanelFooter: React.FC<Props> = ({
             <MoonIcon color={isDark ? "text" : "textDisabled"} width="24px" />
           </Flex>
         </Button>
-        {/* <Dropdown
+        <div   style={{float:"right",width:'50%'}}>
+        <Dropdown
           position="top-right"
           target={
             <Button variant="text" startIcon={<LanguageIcon color="textSubtle" width="24px" />}>
@@ -137,7 +138,7 @@ const PanelFooter: React.FC<Props> = ({
             </Button>
           }
         >
-          {langs.map((lang) => (
+          {langs.map((lang)=> (
             <MenuButton
               key={lang.code}
               fullWidth
@@ -148,7 +149,8 @@ const PanelFooter: React.FC<Props> = ({
               {lang.language}
             </MenuButton>
           ))}
-        </Dropdown> */}
+        </Dropdown>
+        </div>
       </SettingsEntry>
     </Container>
   );
