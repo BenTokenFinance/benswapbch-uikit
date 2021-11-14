@@ -29,3 +29,7 @@ export { default as BenIcon } from "./Ben";
 export { default as ListingIcon } from "./Listing";
 export { default as IboIcon } from "./Ibo";
 export { default as TownIcon } from "./Town";
+export { default as TutorialIcon1 } from "./Book1";
+export { default as TutorialIcon2 } from "./Book2";
+export { default as TutorialIcon3 } from "./Book3";
+export { default as TutorialIcon4 } from "./Scholar1";
