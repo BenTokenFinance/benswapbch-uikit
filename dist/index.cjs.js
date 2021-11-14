@@ -2642,53 +2642,6 @@ var PanelBody = function (_a) {
 };
 var templateObject_1$9;
 
-<<<<<<< HEAD
-var Icons = IconModule;
-var MoonIcon = Icons.MoonIcon, SunIcon = Icons.SunIcon; Icons.LanguageIcon;
-var Container = styled__default['default'].div(templateObject_1$8 || (templateObject_1$8 = __makeTemplateObject(["\n  flex: none;\n  padding: 8px 4px;\n  background-color: ", ";\n  border-top: solid 2px rgba(133, 133, 133, 0.1);\n"], ["\n  flex: none;\n  padding: 8px 4px;\n  background-color: ", ";\n  border-top: solid 2px rgba(133, 133, 133, 0.1);\n"])), function (_a) {
-    var theme = _a.theme;
-    return theme.nav.background;
-});
-var PriceLink = styled__default['default'].a(templateObject_2$3 || (templateObject_2$3 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  svg {\n    transition: transform 0.3s;\n  }\n  :hover {\n    svg {\n      transform: scale(1.2);\n    }\n  }\n"], ["\n  display: flex;\n  align-items: center;\n  svg {\n    transition: transform 0.3s;\n  }\n  :hover {\n    svg {\n      transform: scale(1.2);\n    }\n  }\n"])));
-// const SettingsEntry = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   height: ${MENU_ENTRY_HEIGHT}px;
-//   padding: 0 8px;
-// `;
-var SettingsEntry = styled__default['default'].div(templateObject_3$1 || (templateObject_3$1 = __makeTemplateObject(["\n  display: block;\n  text-align: center;\n  justify-content: space-between;\n  height: ", "px;\n  padding: 0 8px;\n"], ["\n  display: block;\n  text-align: center;\n  justify-content: space-between;\n  height: ", "px;\n  padding: 0 8px;\n"])), MENU_ENTRY_HEIGHT);
-var SocialEntry = styled__default['default'].div(templateObject_4$1 || (templateObject_4$1 = __makeTemplateObject(["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  height: ", "px;\n  padding: 0 16px;\n"], ["\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  height: ", "px;\n  padding: 0 16px;\n"])), MENU_ENTRY_HEIGHT);
-var PanelFooter = function (_a) {
-    var isPushed = _a.isPushed, pushNav = _a.pushNav, toggleTheme = _a.toggleTheme, isDark = _a.isDark, cakePriceUsd = _a.cakePriceUsd; _a.currentLang; _a.langs; _a.setLang; var priceLink = _a.priceLink;
-    if (!isPushed) {
-        return (React__default['default'].createElement(Container, null,
-            React__default['default'].createElement(IconButton, { variant: "text", onClick: function () { return pushNav(true); } },
-                React__default['default'].createElement(Icon$13, null))));
-    }
-    return (React__default['default'].createElement(Container, null,
-        React__default['default'].createElement(SocialEntry, null,
-            cakePriceUsd ? (React__default['default'].createElement(PriceLink, { href: priceLink, target: "_blank" },
-                React__default['default'].createElement(Icon$V, { width: "24px", mr: "8px" }),
-                React__default['default'].createElement(Text, { color: "textSubtle", bold: true }, "$" + cakePriceUsd.toFixed(3)))) : (React__default['default'].createElement(Skeleton, { width: 80, height: 24 })),
-            React__default['default'].createElement(Flex, null, socials.map(function (social, index) {
-                var Icon = Icons[social.icon];
-                var iconProps = { width: "24px", color: "textSubtle", style: { cursor: "pointer" } };
-                var mr = index < socials.length - 1 ? "8px" : 0;
-                if (social.items) {
-                    return (React__default['default'].createElement(Dropdown, { key: social.label, position: "top", target: React__default['default'].createElement(Icon, __assign({}, iconProps, { mr: mr })) }, social.items.map(function (item) { return (React__default['default'].createElement(Link, { external: true, key: item.label, href: item.href, "aria-label": item.label, color: "textSubtle" }, item.label)); })));
-                }
-                return (React__default['default'].createElement(Link, { external: true, key: social.label, href: social.href, "aria-label": social.label, mr: mr },
-                    React__default['default'].createElement(Icon, __assign({}, iconProps))));
-            }))),
-        React__default['default'].createElement(SettingsEntry, null,
-            React__default['default'].createElement(Button, { variant: "text", onClick: function () { return toggleTheme(!isDark); } },
-                React__default['default'].createElement(Flex, { alignItems: "center" },
-                    React__default['default'].createElement(SunIcon, { color: isDark ? "textDisabled" : "text", width: "24px" }),
-                    React__default['default'].createElement(Text, { color: "textDisabled", mx: "4px" }, "/"),
-                    React__default['default'].createElement(MoonIcon, { color: isDark ? "text" : "textDisabled", width: "24px" }))))));
-};
-=======
 var Icons = IconModule;
 var MoonIcon = Icons.MoonIcon, SunIcon = Icons.SunIcon, LanguageIcon = Icons.LanguageIcon;
 var Container = styled__default['default'].div(templateObject_1$8 || (templateObject_1$8 = __makeTemplateObject(["\n  flex: none;\n  padding: 8px 4px;\n  background-color: ", ";\n  border-top: solid 2px rgba(133, 133, 133, 0.1);\n"], ["\n  flex: none;\n  padding: 8px 4px;\n  background-color: ", ";\n  border-top: solid 2px rgba(133, 133, 133, 0.1);\n"])), function (_a) {
@@ -2710,12 +2663,12 @@ var PanelFooter = function (_a) {
     if (!isPushed) {
         return (React__default['default'].createElement(Container, null,
             React__default['default'].createElement(IconButton, { variant: "text", onClick: function () { return pushNav(true); } },
-                React__default['default'].createElement(Icon$$, null))));
+                React__default['default'].createElement(Icon$13, null))));
     }
     return (React__default['default'].createElement(Container, null,
         React__default['default'].createElement(SocialEntry, null,
             cakePriceUsd ? (React__default['default'].createElement(PriceLink, { href: priceLink, target: "_blank" },
-                React__default['default'].createElement(Icon$R, { width: "24px", mr: "8px" }),
+                React__default['default'].createElement(Icon$V, { width: "24px", mr: "8px" }),
                 React__default['default'].createElement(Text, { color: "textSubtle", bold: true }, "$" + cakePriceUsd.toFixed(3)))) : (React__default['default'].createElement(Skeleton, { width: 80, height: 24 })),
             React__default['default'].createElement(Flex, null, socials.map(function (social, index) {
                 var Icon = Icons[social.icon];
@@ -2739,7 +2692,6 @@ var PanelFooter = function (_a) {
                     // Safari fix
                     style: { minHeight: "32px", height: "auto" } }, lang.language)); }))))));
 };
->>>>>>> master-dev
 var templateObject_1$8, templateObject_2$3, templateObject_3$1, templateObject_4$1;
 
 var StyledPanel = styled__default['default'].div(templateObject_1$7 || (templateObject_1$7 = __makeTemplateObject(["\n  position: fixed;\n  padding-top: ", ";\n  top: 0;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  flex-shrink: 0;\n  background-color: ", ";\n  width: ", ";\n  height: 100vh;\n  transition: padding-top 0.2s, width 0.2s;\n  border-right: ", ";\n  z-index: 11;\n  overflow: ", ";\n  transform: translate3d(0, 0, 0);\n\n  ", " {\n    border-right: 2px solid rgba(133, 133, 133, 0.1);\n    width: ", ";\n  }\n"], ["\n  position: fixed;\n  padding-top: ", ";\n  top: 0;\n  left: 0;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-between;\n  flex-shrink: 0;\n  background-color: ", ";\n  width: ", ";\n  height: 100vh;\n  transition: padding-top 0.2s, width 0.2s;\n  border-right: ", ";\n  z-index: 11;\n  overflow: ", ";\n  transform: translate3d(0, 0, 0);\n\n  ", " {\n    border-right: 2px solid rgba(133, 133, 133, 0.1);\n    width: ", ";\n  }\n"])), function (_a) {
