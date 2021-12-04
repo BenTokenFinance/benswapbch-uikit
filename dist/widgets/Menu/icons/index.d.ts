@@ -34,3 +34,4 @@ export { default as TutorialIcon2 } from "./Book2";
 export { default as TutorialIcon3 } from "./Book3";
 export { default as TutorialIcon4 } from "./Scholar1";
 export { default as ToyIcon } from "./Toy";
+export { default as ToyIcon2 } from "./Toy2";
