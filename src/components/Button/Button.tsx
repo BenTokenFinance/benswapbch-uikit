@@ -11,12 +11,12 @@ const Button: React.FC<ButtonProps> = ({ startIcon, endIcon, children, external,
     <StyledButton {...internalProps} {...props} isLoading={isLoading} disabled={isDisabled}>
       {React.isValidElement(startIcon) &&
         React.cloneElement(startIcon, {
-          mr: "0.5rem",
+          mr: "0.01rem",
         })}
       {children}
       {React.isValidElement(endIcon) &&
         React.cloneElement(endIcon, {
-          ml: "0.5rem",
+          ml: "0.01rem",
         })}
     </StyledButton>
   );
