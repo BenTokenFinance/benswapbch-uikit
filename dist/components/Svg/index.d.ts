@@ -50,3 +50,4 @@ export { default as GiftIcon } from "./Icons/Gift";
 export { default as Svg } from "./Svg";
 export type { SvgProps } from "./types";
 export { default as BenIcon } from "../../widgets/Menu/icons/Ben";
+export { default as IboIcon } from "../../widgets/Menu/icons/Ibo";
