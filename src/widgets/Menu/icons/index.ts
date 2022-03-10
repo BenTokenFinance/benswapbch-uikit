@@ -37,3 +37,6 @@ export { default as ToyIcon } from "./Toy";
 export { default as ToyIcon2 } from "./Toy2";
 export { default as CattleIcon1 } from "./Cattle1";
 export { default as CattleIcon2 } from "./Cattle2";
+export { default as GovernmentIcon1 } from "./Government1";
+export { default as GovernmentIcon2 } from "./Government2";
+export { default as GovernmentIcon3 } from "./Government3";
