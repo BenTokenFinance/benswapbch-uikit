@@ -133,7 +133,7 @@ export const WithProfile: React.FC = () => {
   return (
     <BrowserRouter>
       <Menu
-        account="0xbdda50183d817c3289f895a4472eb475967dc980"
+        account="0xb69d54a4e31f24afdd9eb1b53f8319ac83c646c9"
         login={noop}
         logout={noop}
         isDark={false}
@@ -144,10 +144,10 @@ export const WithProfile: React.FC = () => {
         cakePriceUsd={0.23158668932877668}
         links={links}
         profile={{
-          username: "pancakeswap",
-          image: "https://pancakeswap.finance/images/nfts/blueberries-preview.png",
-          profileLink: "/profile",
-          noProfileLink: "/no-profile",
+          username: "pat.bch",
+          image: "https://metadata.bch.domains/smartbch-amber/avatar/pat.bch",
+          profileLink: "https://app.bch.domains/name/pat.bch",
+          noProfileLink: `https://app.bch.domains/name/address/0xb69d54a4e31f24afdd9eb1b53f8319ac83c646c9`,
         }}
       >
         <div>
