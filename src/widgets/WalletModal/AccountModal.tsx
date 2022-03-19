@@ -27,7 +27,7 @@ const AccountModal: React.FC<Props> = ({ account, profile, logout, onDismiss = (
           {profile.image?.startsWith("http") && (
             <StyledAvatar style={{ marginLeft: "0px", marginRight: "10px" }} title={profile?.username}>
               <a target="_blank" href={`https://app.bch.domains/name/${profile?.username}`} aria-label={"Link to profile"}>
-                <img src={BAD_SRCS[profile.image]?"/images/unknown.png":profile.image} alt="profile avatar" height="64px" width="64px"  onError={() => {
+                <img src={BAD_SRCS[profile.image as any]?"/images/unknown.png":profile.image} alt="profile avatar" height="64px" width="64px"  onError={() => {
                   BAD_SRCS[profile.image] = true
                   refresh((i) => i + 1)
                 }} />
