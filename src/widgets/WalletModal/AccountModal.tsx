@@ -30,7 +30,7 @@ const AccountModal: React.FC<Props> = ({ account, profile, logout, onDismiss = (
                 <img src={BAD_SRCS[profile.image]?"/images/unknown.png":profile.image} alt="profile avatar" height="64px" width="64px"  onError={() => {
                   BAD_SRCS[profile.image] = true
                   refresh((i) => i + 1)
-                }/>
+                }} />
               </a>
             </StyledAvatar>
           )}
