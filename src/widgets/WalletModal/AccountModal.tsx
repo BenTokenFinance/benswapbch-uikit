@@ -23,7 +23,7 @@ const AccountModal: React.FC<Props> = ({ account, profile, logout, onDismiss = (
   return (
     <Modal title="Your wallet" onDismiss={onDismiss}>
       {profile && (
-        <Flex alignItems={"center"}>
+        <Flex alignItems={"center"} mb="16px">
           {profile.image?.startsWith("http") && (
             <StyledAvatar style={{ marginLeft: "0px", marginRight: "10px" }} title={profile?.username}>
               <a target="_blank" href={`https://app.bch.domains/name/${profile?.username}`} aria-label={"Link to profile"}>
