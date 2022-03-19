@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Profile } from "./types";
@@ -28,13 +28,19 @@ const Pip = styled.div`
   width: 8px;
 `;
 
+const BAD_SRCS: { [_src: string]: true } = {}
+
 const Avatar: React.FC<AvatarProps> = ({ profile }) => {
   const { username = "Bunny", image, profileLink, noProfileLink, showPip = false } = profile;
+  const [, refresh] = useState<number>(0)
   const link = profile.username ? profileLink : noProfileLink;
   const isExternal = link.startsWith("http");
   const ariaLabel = "Link to profile";
   const icon = image ? (
-    <img src={image} alt="profile avatar" height="32px" width="32px" />
+    <img src={BAD_SRCS[image]?"/images/unknown.png":image} alt="profile avatar" height="32px" width="32px" onError={() => {
+      BAD_SRCS[image] = true
+      refresh((i) => i + 1)
+    }}/>
   ) : (
     <NoProfileAvatar width="32px" height="32px" />
   );
