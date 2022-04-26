@@ -2928,39 +2928,6 @@ var CopyToClipboard = function (_a) {
 };
 var templateObject_1$5, templateObject_2$2;
 
-var AccountModal = function (_a) {
-    var account = _a.account, logout = _a.logout, _b = _a.onDismiss, onDismiss = _b === void 0 ? function () { return null; } : _b;
-    return (React.createElement(Modal, { title: "Your wallet", onDismiss: onDismiss },
-        React.createElement(Text, { fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, account),
-        React.createElement(Flex, { mb: "32px" },
-            React.createElement(LinkExternal, { small: true, href: "https://smartscan.cash/address/" + account, mr: "16px" }, "View on SmartScan"),
-            React.createElement(CopyToClipboard, { toCopy: account }, "Copy Address")),
-        React.createElement(Flex, { justifyContent: "center" },
-            React.createElement(Button, { size: "sm", variant: "secondary", onClick: function () {
-                    logout();
-                    window.localStorage.removeItem(localStorageKey);
-                    onDismiss();
-                    window.location.reload();
-                } }, "Logout"))));
-};
-
-var useWalletModal = function (login, logout, account) {
-    var onPresentConnectModal = useModal(React.createElement(ConnectModal, { login: login }))[0];
-    var onPresentAccountModal = useModal(React.createElement(AccountModal, { account: account || "", logout: logout }))[0];
-    return { onPresentConnectModal: onPresentConnectModal, onPresentAccountModal: onPresentAccountModal };
-};
-
-var UserBlock = function (_a) {
-    var account = _a.account, login = _a.login, logout = _a.logout;
-    var _b = useWalletModal(login, logout, account), onPresentConnectModal = _b.onPresentConnectModal, onPresentAccountModal = _b.onPresentAccountModal;
-    var accountEllipsis = account ? account.substring(0, 4) + "..." + account.substring(account.length - 4) : null;
-    return (React.createElement("div", null, account ? (React.createElement(Button, { size: "sm", variant: "tertiary", onClick: function () {
-            onPresentAccountModal();
-        } }, accountEllipsis)) : (React.createElement(Button, { size: "sm", onClick: function () {
-            onPresentConnectModal();
-        } }, "Connect"))));
-};
-
 var Icon = function (props) {
     var theme = useTheme();
     var primaryColor = theme.isDark ? "#3C3742" : "#e9eaeb";
@@ -2981,16 +2948,21 @@ var Pip = styled.div(templateObject_2$1 || (templateObject_2$1 = __makeTemplateO
     var theme = _a.theme;
     return theme.colors.failure;
 });
+var BAD_SRCS$1 = {};
 var Avatar = function (_a) {
     var profile = _a.profile;
     var _b = profile.username, username = _b === void 0 ? "Bunny" : _b, image = profile.image, profileLink = profile.profileLink, noProfileLink = profile.noProfileLink, _c = profile.showPip, showPip = _c === void 0 ? false : _c;
+    var _d = useState(0), refresh = _d[1];
     var link = profile.username ? profileLink : noProfileLink;
     var isExternal = link.startsWith("http");
     var ariaLabel = "Link to profile";
-    var icon = image ? (React.createElement("img", { src: image, alt: "profile avatar", height: "32px", width: "32px" })) : (React.createElement(Icon, { width: "32px", height: "32px" }));
+    var icon = image ? (React.createElement("img", { src: BAD_SRCS$1[image] ? "/images/unknown.png" : image, alt: "profile avatar", height: "32px", width: "32px", onError: function () {
+            BAD_SRCS$1[image] = true;
+            refresh(function (i) { return i + 1; });
+        } })) : (React.createElement(Icon, { width: "32px", height: "32px" }));
     if (isExternal) {
         return (React.createElement(StyledAvatar, { title: username },
-            React.createElement("a", { href: link, "aria-label": ariaLabel }, icon),
+            React.createElement("a", { target: "_blank", href: link, "aria-label": ariaLabel }, icon),
             showPip && React.createElement(Pip, null)));
     }
     return (React.createElement(StyledAvatar, { title: username },
@@ -2998,6 +2970,60 @@ var Avatar = function (_a) {
         showPip && React.createElement(Pip, null)));
 };
 var templateObject_1$4, templateObject_2$1;
+
+var BAD_SRCS = {};
+var AccountModal = function (_a) {
+    var _b;
+    var connectorId = _a.connectorId, account = _a.account, profile = _a.profile, logout = _a.logout, _c = _a.onDismiss, onDismiss = _c === void 0 ? function () { return null; } : _c;
+    var _d = useState(0), refresh = _d[1];
+    return (React.createElement(Modal, { title: "Your wallet", onDismiss: onDismiss },
+        profile && (React.createElement(Flex, { alignItems: "center", mb: "16px" },
+            ((_b = profile.image) === null || _b === void 0 ? void 0 : _b.startsWith("http")) && (React.createElement(StyledAvatar, { style: { marginLeft: "0px", marginRight: "10px" }, title: profile === null || profile === void 0 ? void 0 : profile.username },
+                React.createElement("a", { target: "_blank", href: "https://app.bch.domains/name/" + (profile === null || profile === void 0 ? void 0 : profile.username), "aria-label": "Link to profile" },
+                    React.createElement("img", { src: BAD_SRCS[profile.image] ? "/images/unknown.png" : profile.image, alt: "profile avatar", height: "64px", width: "64px", onError: function () {
+                            BAD_SRCS[profile.image] = true;
+                            refresh(function (i) { return i + 1; });
+                        } })))),
+            React.createElement(LinkExternal, { href: "https://app.bch.domains/name/" + (profile === null || profile === void 0 ? void 0 : profile.username), fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, profile.username))),
+        React.createElement(Text, { fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, account),
+        React.createElement(Flex, { mb: "32px" },
+            React.createElement(LinkExternal, { small: true, href: "https://smartscan.cash/address/" + account, mr: "16px" }, "View on SmartScan"),
+            React.createElement(CopyToClipboard, { toCopy: account }, "Copy Address")),
+        React.createElement(Flex, { justifyContent: "center" },
+            React.createElement(Button, { size: "sm", variant: "secondary", onClick: function () {
+                    logout();
+                    window.localStorage.removeItem(localStorageKey);
+                    onDismiss();
+                    window.location.reload();
+                } }, "Logout"),
+            connectorId === 'walletconnect' ?
+                React.createElement(Button, { ml: '5px', size: "sm", variant: "secondary", onClick: function () {
+                        logout();
+                        window.localStorage.removeItem('walletconnect');
+                        window.localStorage.removeItem(localStorageKey);
+                        onDismiss();
+                        window.location.reload();
+                    } }, "Disconnect")
+                : '')));
+};
+
+var useWalletModal = function (login, logout, account, profile, connectorId) {
+    var onPresentConnectModal = useModal(React.createElement(ConnectModal, { login: login }))[0];
+    var onPresentAccountModal = useModal(React.createElement(AccountModal, { connectorId: connectorId, profile: profile, account: account || "", logout: logout }))[0];
+    return { onPresentConnectModal: onPresentConnectModal, onPresentAccountModal: onPresentAccountModal };
+};
+
+var UserBlock = function (_a) {
+    var account = _a.account, profile = _a.profile, login = _a.login, logout = _a.logout, connectorId = _a.connectorId;
+    var _b = useWalletModal(login, logout, account, profile, connectorId), onPresentConnectModal = _b.onPresentConnectModal, onPresentAccountModal = _b.onPresentAccountModal;
+    var accountEllipsis = (profile === null || profile === void 0 ? void 0 : profile.username) ? profile === null || profile === void 0 ? void 0 : profile.username :
+        (account ? account.substring(0, 4) + "..." + account.substring(account.length - 4) : null);
+    return (React.createElement("div", null, account ? (React.createElement(Button, { size: "sm", variant: "tertiary", onClick: function () {
+            onPresentAccountModal();
+        } }, accountEllipsis)) : (React.createElement(Button, { size: "sm", onClick: function () {
+            onPresentConnectModal();
+        } }, "Connect"))));
+};
 
 var Wrapper = styled.div(templateObject_1$3 || (templateObject_1$3 = __makeTemplateObject(["\n  position: relative;\n  width: 100%;\n"], ["\n  position: relative;\n  width: 100%;\n"])));
 var StyledNav = styled.nav(templateObject_2 || (templateObject_2 = __makeTemplateObject(["\n  position: fixed;\n  top: ", ";\n  left: 0;\n  transition: top 0.2s;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding-left: 8px;\n  padding-right: 16px;\n  width: 100%;\n  height: ", "px;\n  background-color: ", ";\n  border-bottom: solid 2px rgba(133, 133, 133, 0.1);\n  z-index: 20;\n  transform: translate3d(0, 0, 0);\n"], ["\n  position: fixed;\n  top: ", ";\n  left: 0;\n  transition: top 0.2s;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding-left: 8px;\n  padding-right: 16px;\n  width: 100%;\n  height: ", "px;\n  background-color: ", ";\n  border-bottom: solid 2px rgba(133, 133, 133, 0.1);\n  z-index: 20;\n  transform: translate3d(0, 0, 0);\n"])), function (_a) {
@@ -3024,7 +3050,7 @@ var MobileOnlyOverlay = styled(Overlay)(templateObject_5 || (templateObject_5 = 
 });
 var Menu = function (_a) {
     var _b;
-    var account = _a.account, login = _a.login, logout = _a.logout, isDark = _a.isDark, toggleTheme = _a.toggleTheme, langs = _a.langs, setLang = _a.setLang, currentLang = _a.currentLang, cakePriceUsd = _a.cakePriceUsd, links = _a.links, priceLink = _a.priceLink, profile = _a.profile, children = _a.children;
+    var account = _a.account, login = _a.login, logout = _a.logout, isDark = _a.isDark, toggleTheme = _a.toggleTheme, langs = _a.langs, setLang = _a.setLang, currentLang = _a.currentLang, cakePriceUsd = _a.cakePriceUsd, links = _a.links, priceLink = _a.priceLink, profile = _a.profile, children = _a.children, connectorId = _a.connectorId;
     var isXl = useMatchBreakpoints().isXl;
     var isMobile = isXl === false;
     var _c = useState(!isMobile), isPushed = _c[0], setIsPushed = _c[1];
@@ -3064,7 +3090,7 @@ var Menu = function (_a) {
         React.createElement(StyledNav, { showMenu: showMenu },
             React.createElement(Logo, { isPushed: isPushed, togglePush: function () { return setIsPushed(function (prevState) { return !prevState; }); }, isDark: isDark, href: (_b = homeLink === null || homeLink === void 0 ? void 0 : homeLink.href) !== null && _b !== void 0 ? _b : "/" }),
             React.createElement(Flex, null,
-                React.createElement(UserBlock, { account: account, login: login, logout: logout }),
+                React.createElement(UserBlock, { connectorId: connectorId, account: account, profile: profile, login: login, logout: logout }),
                 profile && React.createElement(Avatar, { profile: profile }))),
         React.createElement(BodyWrapper, null,
             React.createElement(Panel, { isPushed: isPushed, isMobile: isMobile, showMenu: showMenu, isDark: isDark, toggleTheme: toggleTheme, langs: langs, setLang: setLang, currentLang: currentLang, cakePriceUsd: cakePriceUsd, pushNav: setIsPushed, links: links, priceLink: priceLink }),

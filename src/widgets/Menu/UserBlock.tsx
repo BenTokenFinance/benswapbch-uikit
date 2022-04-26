@@ -1,21 +1,22 @@
 import React from "react";
 import Button from "../../components/Button/Button";
 import { useWalletModal } from "../WalletModal";
-import { Login } from "../WalletModal/types";
+import { ConnectorId, Login } from "../WalletModal/types";
 import { Profile } from "./types";
 
 interface Props {
   account?: string;
   login: Login;
   logout: () => void;
-  profile?: Profile
+  profile?: Profile;
+  connectorId?:ConnectorId
 }
 
-const UserBlock: React.FC<Props> = ({ account, profile, login, logout }) => {
-  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, profile);
+const UserBlock: React.FC<Props> = ({ account, profile, login, logout,connectorId }) => {
+  const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, profile,connectorId);
   const accountEllipsis = profile?.username ? profile?.username :
     (account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null);
-  return (
+    return (
     <div>
       {account ? (
         <Button
