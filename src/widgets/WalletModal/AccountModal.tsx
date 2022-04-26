@@ -85,7 +85,7 @@ const AccountModal: React.FC<Props> = ({ connectorId,account, profile, logout, o
               window.location.reload();
             }}
           >
-            Disconnect WC
+            Disconnect
           </Button>
         :''
         }  
