@@ -8,17 +8,19 @@ import CopyToClipboard from "./CopyToClipboard";
 import { localStorageKey } from "./config";
 import { Profile } from "../Menu/types";
 import { StyledAvatar } from "../Menu/Avatar";
+import { ConnectorId } from ".";
 
 interface Props {
   account: string;
   logout: () => void;
   onDismiss?: () => void;
-  profile?: Profile
+  profile?: Profile;
+  connectorId?:ConnectorId
 }
 
 const BAD_SRCS: { [_src: string]: true } = {}
 
-const AccountModal: React.FC<Props> = ({ account, profile, logout, onDismiss = () => null }) => { 
+const AccountModal: React.FC<Props> = ({ connectorId,account, profile, logout, onDismiss = () => null }) => { 
   const [, refresh] = useState<number>(0)
   return (
     <Modal title="Your wallet" onDismiss={onDismiss}>
@@ -70,6 +72,24 @@ const AccountModal: React.FC<Props> = ({ account, profile, logout, onDismiss = (
         >
           Logout
         </Button>
+        {connectorId==='walletconnect'?
+           <Button
+            ml={'5px'}
+            size="sm"
+            variant="secondary"
+            onClick={() => {
+              logout();
+              window.localStorage.removeItem('walletconnect');
+              window.localStorage.removeItem(localStorageKey);
+              onDismiss();
+              window.location.reload();
+            }}
+          >
+            Disconnect WC
+          </Button>
+        :''
+        }  
+        
       </Flex>
     </Modal>
   );
