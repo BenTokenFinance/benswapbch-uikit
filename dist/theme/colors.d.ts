@@ -17,6 +17,7 @@ export declare const otherColors: {
     ecosystem: string;
     friend: string;
     core: string;
+    rugpull: string;
 };
 export declare const lightColors: Colors;
 export declare const darkColors: Colors;

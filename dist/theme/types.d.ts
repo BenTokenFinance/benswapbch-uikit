@@ -51,6 +51,7 @@ export declare type Colors = {
     ecosystem: string;
     friend: string;
     core: string;
+    rugpull: string;
 };
 export declare type ZIndices = {
     dropdown: number;
