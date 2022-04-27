@@ -19,7 +19,8 @@ export const otherColors = {
   promotion: "#cb8ef9",
   ecosystem: "#ff8f1d",
   friend: "#ff7979",
-  core: "#deb41d"
+  core: "#deb41d",
+  rugpull: "#8b8b8b"
 };
 
 export const lightColors: Colors = {

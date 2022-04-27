@@ -13,7 +13,8 @@ export const variants = {
   PROMOTION: "promotion",
   ECOSYSTEM: "ecosystem",
   FRIEND: "friend",
-  CORE: "core"
+  CORE: "core",
+  RUGPULL: "rugpull"
 } as const;
 
 export type Variants = typeof variants[keyof typeof variants];
