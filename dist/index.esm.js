@@ -2677,7 +2677,12 @@ var AccordionContent = styled.div(templateObject_2$4 || (templateObject_2$4 = __
 });
 var Accordion = function (_a) {
     var label = _a.label, icon = _a.icon, isPushed = _a.isPushed, pushNav = _a.pushNav, _b = _a.initialOpenState, initialOpenState = _b === void 0 ? false : _b, children = _a.children, className = _a.className;
-    var _c = useState(initialOpenState), isOpen = _c[0], setIsOpen = _c[1];
+    useEffect(function () {
+        if (initialOpenState) {
+            setIsOpen(!!initialOpenState);
+        }
+    }, [initialOpenState]);
+    var _c = useState(!!initialOpenState), isOpen = _c[0], setIsOpen = _c[1];
     var handleClick = function () {
         if (isPushed) {
             setIsOpen(function (prevState) { return !prevState; });
@@ -2718,7 +2723,7 @@ var PanelBody = function (_a) {
         var iconElement = React.createElement(Icon, { width: "24px", mr: "14px" });
         var calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         if (entry.items) {
-            return (React.createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: entry.initialOpenState, className: calloutClass }, isPushed &&
+            return (React.createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname; })) + 1, className: calloutClass }, isPushed &&
                 entry.items.map(function (item) { return (React.createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname, onClick: handleClick },
                     React.createElement(MenuLink, { href: item.href },
                         React.createElement("span", null, item.label)))); })));
