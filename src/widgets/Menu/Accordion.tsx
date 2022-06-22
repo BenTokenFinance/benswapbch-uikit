@@ -9,7 +9,7 @@ import { useEffect } from "react";
 interface Props extends PushedProps {
   label: string;
   icon: React.ReactElement;
-  initialOpenState?: boolean;
+  initialOpenState?: any;
   className?: string;
 }
 
@@ -40,10 +40,10 @@ const Accordion: React.FC<Props> = ({
 }) => {
   useEffect(()=>{
     if(initialOpenState){
-      setIsOpen(initialOpenState)
+      setIsOpen(!!initialOpenState)
     }
   },[initialOpenState])
-  const [isOpen, setIsOpen] = useState(initialOpenState);
+  const [isOpen, setIsOpen] = useState(!!initialOpenState);
 
   const handleClick = () => {
     if (isPushed) {
