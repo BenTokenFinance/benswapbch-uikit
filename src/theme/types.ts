@@ -63,6 +63,7 @@ export type Colors = {
   ecosystem: string;
   friend: string;
   core: string;
+  rugpull: string;
 };
 
 export type ZIndices = {

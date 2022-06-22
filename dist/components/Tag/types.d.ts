@@ -13,6 +13,7 @@ export declare const variants: {
     readonly ECOSYSTEM: "ecosystem";
     readonly FRIEND: "friend";
     readonly CORE: "core";
+    readonly RUGPULL: "rugpull";
 };
 export declare type Variants = typeof variants[keyof typeof variants];
 export interface TagProps extends SpaceProps {
