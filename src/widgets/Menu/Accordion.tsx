@@ -4,6 +4,7 @@ import { MENU_ENTRY_HEIGHT } from "./config";
 import { MenuEntry, LinkLabel } from "./MenuEntry";
 import { PushedProps } from "./types";
 import { ArrowDropDownIcon, ArrowDropUpIcon } from "../../components/Svg";
+import { useEffect } from "react";
 
 interface Props extends PushedProps {
   label: string;
@@ -37,6 +38,11 @@ const Accordion: React.FC<Props> = ({
   children,
   className,
 }) => {
+  useEffect(()=>{
+    if(initialOpenState){
+      setIsOpen(initialOpenState)
+    }
+  },[initialOpenState])
   const [isOpen, setIsOpen] = useState(initialOpenState);
 
   const handleClick = () => {

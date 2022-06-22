@@ -43,7 +43,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
               pushNav={pushNav}
               icon={iconElement}
               label={entry.label}
-              initialOpenState={entry.initialOpenState}
+              initialOpenState={(entry.items.findIndex(t=>t.isActive || t.href === location.pathname))!=-1}
               className={calloutClass}
             >
               {isPushed &&
