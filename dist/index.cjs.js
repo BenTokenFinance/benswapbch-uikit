@@ -2690,7 +2690,12 @@ var AccordionContent = styled__default['default'].div(templateObject_2$4 || (tem
 });
 var Accordion = function (_a) {
     var label = _a.label, icon = _a.icon, isPushed = _a.isPushed, pushNav = _a.pushNav, _b = _a.initialOpenState, initialOpenState = _b === void 0 ? false : _b, children = _a.children, className = _a.className;
-    var _c = React.useState(initialOpenState), isOpen = _c[0], setIsOpen = _c[1];
+    React.useEffect(function () {
+        if (initialOpenState) {
+            setIsOpen(!!initialOpenState);
+        }
+    }, [initialOpenState]);
+    var _c = React.useState(!!initialOpenState), isOpen = _c[0], setIsOpen = _c[1];
     var handleClick = function () {
         if (isPushed) {
             setIsOpen(function (prevState) { return !prevState; });
@@ -2731,7 +2736,7 @@ var PanelBody = function (_a) {
         var iconElement = React__default['default'].createElement(Icon, { width: "24px", mr: "14px" });
         var calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         if (entry.items) {
-            return (React__default['default'].createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: entry.initialOpenState, className: calloutClass }, isPushed &&
+            return (React__default['default'].createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname; })) + 1, className: calloutClass }, isPushed &&
                 entry.items.map(function (item) { return (React__default['default'].createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname, onClick: handleClick },
                     React__default['default'].createElement(MenuLink, { href: item.href },
                         React__default['default'].createElement("span", null, item.label)))); })));
