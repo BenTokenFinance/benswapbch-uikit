@@ -22,6 +22,11 @@ const Container = styled.div`
   height: 100%;
 `;
 
+const isHrefActive = (href: any) => {
+  if (href==="/") return location.pathname === href;
+  return !!href && location.pathname?.startsWith(href);
+}
+
 const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
   const location = useLocation();
 
@@ -43,12 +48,12 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
               pushNav={pushNav}
               icon={iconElement}
               label={entry.label}
-              initialOpenState={(entry.items.findIndex(t=>t.isActive || (!!t.href && location.pathname?.startsWith(t.href))))+1}
+              initialOpenState={(entry.items.findIndex(t=>t.isActive || isHrefActive(t.href)))+1}
               className={calloutClass}
             >
               {isPushed &&
                 entry.items.map((item) => (
-                  <MenuEntry key={item.href} secondary isActive={item.isActive || (!!item.href && location.pathname?.startsWith(item.href))} onClick={handleClick}>
+                  <MenuEntry key={item.href} secondary isActive={item.isActive || isHrefActive(item.href)} onClick={handleClick}>
                     <MenuLink href={item.href}><span>{item.label}</span></MenuLink>
                   </MenuEntry>
                 ))}
@@ -56,7 +61,7 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
           );
         }
         return (
-          <MenuEntry key={entry.label} isActive={entry.isActive || (!!entry.href && location.pathname?.startsWith(entry.href||""))} className={calloutClass}>
+          <MenuEntry key={entry.label} isActive={entry.isActive || isHrefActive(entry.href||"")} className={calloutClass}>
             <MenuLink href={entry.href} onClick={handleClick}>
               {iconElement}
               <LinkLabel isPushed={isPushed}><span>{entry.label}</span></LinkLabel>
