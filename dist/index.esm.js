@@ -2713,9 +2713,15 @@ var MenuLink = function (_a) {
 
 var Icons$1 = IconModule;
 var Container$1 = styled.div(templateObject_1$9 || (templateObject_1$9 = __makeTemplateObject(["\n  display: flex;\n  flex-direction: column;\n  overflow-y: auto;\n  overflow-x: hidden;\n  height: 100%;\n"], ["\n  display: flex;\n  flex-direction: column;\n  overflow-y: auto;\n  overflow-x: hidden;\n  height: 100%;\n"])));
+var isHrefActive = function (href) {
+    var _a;
+    if (href === "/")
+        return location.pathname === href;
+    return !!href && ((_a = location.pathname) === null || _a === void 0 ? void 0 : _a.startsWith(href));
+};
 var PanelBody = function (_a) {
     var isPushed = _a.isPushed, pushNav = _a.pushNav, isMobile = _a.isMobile, links = _a.links;
-    var location = useLocation();
+    useLocation();
     // Close the menu when a user clicks a link on mobile
     var handleClick = isMobile ? function () { return pushNav(false); } : undefined;
     return (React.createElement(Container$1, null, links.map(function (entry) {
@@ -2723,12 +2729,12 @@ var PanelBody = function (_a) {
         var iconElement = React.createElement(Icon, { width: "24px", mr: "14px" });
         var calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         if (entry.items) {
-            return (React.createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname; })) + 1, className: calloutClass }, isPushed &&
-                entry.items.map(function (item) { return (React.createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname, onClick: handleClick },
+            return (React.createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || isHrefActive(t.href); })) + 1, className: calloutClass }, isPushed &&
+                entry.items.map(function (item) { return (React.createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || isHrefActive(item.href), onClick: handleClick },
                     React.createElement(MenuLink, { href: item.href },
                         React.createElement("span", null, item.label)))); })));
         }
-        return (React.createElement(MenuEntry, { key: entry.label, isActive: entry.isActive || entry.href === location.pathname, className: calloutClass },
+        return (React.createElement(MenuEntry, { key: entry.label, isActive: entry.isActive || isHrefActive(entry.href || ""), className: calloutClass },
             React.createElement(MenuLink, { href: entry.href, onClick: handleClick },
                 iconElement,
                 React.createElement(LinkLabel, { isPushed: isPushed },
