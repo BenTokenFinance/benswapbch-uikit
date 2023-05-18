@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { matchPath, useLocation } from "react-router-dom";
 import { SvgProps } from "../../components/Svg";
 import * as IconModule from "./icons";
 import Accordion from "./Accordion";
@@ -27,6 +27,14 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
 
   // Close the menu when a user clicks a link on mobile
   const handleClick = isMobile ? () => pushNav(false) : undefined;
+  const checkChildren=(children?:Array<string>):boolean=>{
+    if(children){
+      const pathname = location.pathname;
+      const res=children.find(t=>matchPath(pathname, { path: t })?.isExact===true);
+      return res?true:false
+    }
+    return false
+  }
 
   return (
     <Container>
@@ -36,6 +44,8 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
         const calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
 
         if (entry.items) {
+
+          
           return (
             <Accordion
               key={entry.label}
@@ -43,12 +53,12 @@ const PanelBody: React.FC<Props> = ({ isPushed, pushNav, isMobile, links }) => {
               pushNav={pushNav}
               icon={iconElement}
               label={entry.label}
-              initialOpenState={(entry.items.findIndex(t=>t.isActive || t.href === location.pathname))+1}
+              initialOpenState={(entry.items.findIndex(t=>t.isActive || t.href === location.pathname || checkChildren(t.children)))+1}
               className={calloutClass}
             >
               {isPushed &&
                 entry.items.map((item) => (
-                  <MenuEntry key={item.href} secondary isActive={item.isActive || item.href === location.pathname} onClick={handleClick}>
+                  <MenuEntry key={item.href} secondary isActive={item.isActive || item.href === location.pathname || checkChildren(item.children)} onClick={handleClick}>
                     <MenuLink href={item.href}><span>{item.label}</span></MenuLink>
                   </MenuEntry>
                 ))}
