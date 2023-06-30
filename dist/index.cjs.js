@@ -3045,7 +3045,7 @@ var AccountModal = function (_a) {
             React__default['default'].createElement(LinkExternal, { href: "https://app.bch.domains/name/" + (profile === null || profile === void 0 ? void 0 : profile.username), fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, profile.username))),
         React__default['default'].createElement(Text, { fontSize: "20px", bold: true, style: { whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginBottom: "8px" } }, account),
         React__default['default'].createElement(Flex, { mb: "32px" },
-            React__default['default'].createElement(LinkExternal, { small: true, href: "https://smartscan.cash/address/" + account, mr: "16px" }, "View on SmartScan"),
+            React__default['default'].createElement(LinkExternal, { small: true, href: "https://sonar.cash/address/" + account, mr: "16px" }, "View on Sonar"),
             React__default['default'].createElement(CopyToClipboard, { toCopy: account }, "Copy Address")),
         React__default['default'].createElement(Flex, { justifyContent: "center" },
             React__default['default'].createElement(Button, { size: "sm", variant: "secondary", onClick: function () {
