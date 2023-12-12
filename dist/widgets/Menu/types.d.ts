@@ -23,6 +23,7 @@ export interface MenuSubEntry {
     href: string;
     isActive?: boolean;
     calloutClass?: string;
+    children?: Array<string>;
 }
 export interface MenuEntry {
     label: string;

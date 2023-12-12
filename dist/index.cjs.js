@@ -2731,13 +2731,21 @@ var PanelBody = function (_a) {
     var location = reactRouterDom.useLocation();
     // Close the menu when a user clicks a link on mobile
     var handleClick = isMobile ? function () { return pushNav(false); } : undefined;
+    var checkChildren = function (children) {
+        if (children) {
+            var pathname_1 = location.pathname;
+            var res = children.find(function (t) { var _a; return ((_a = reactRouterDom.matchPath(pathname_1, { path: t })) === null || _a === void 0 ? void 0 : _a.isExact) === true; });
+            return res ? true : false;
+        }
+        return false;
+    };
     return (React__default['default'].createElement(Container$1, null, links.map(function (entry) {
         var Icon = Icons$1[entry.icon];
         var iconElement = React__default['default'].createElement(Icon, { width: "24px", mr: "14px" });
         var calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         if (entry.items) {
-            return (React__default['default'].createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname; })) + 1, className: calloutClass }, isPushed &&
-                entry.items.map(function (item) { return (React__default['default'].createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname, onClick: handleClick },
+            return (React__default['default'].createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname || checkChildren(t.children); })) + 1, className: calloutClass }, isPushed &&
+                entry.items.map(function (item) { return (React__default['default'].createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname || checkChildren(item.children), onClick: handleClick },
                     React__default['default'].createElement(MenuLink, { href: item.href },
                         React__default['default'].createElement("span", null, item.label)))); })));
         }

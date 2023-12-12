@@ -5,7 +5,7 @@ import get from 'lodash/get';
 import noop from 'lodash/noop';
 import debounce from 'lodash/debounce';
 import throttle from 'lodash/throttle';
-import { Link as Link$1, NavLink, useLocation } from 'react-router-dom';
+import { Link as Link$1, NavLink, useLocation, matchPath } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 /*! *****************************************************************************
@@ -2718,13 +2718,21 @@ var PanelBody = function (_a) {
     var location = useLocation();
     // Close the menu when a user clicks a link on mobile
     var handleClick = isMobile ? function () { return pushNav(false); } : undefined;
+    var checkChildren = function (children) {
+        if (children) {
+            var pathname_1 = location.pathname;
+            var res = children.find(function (t) { var _a; return ((_a = matchPath(pathname_1, { path: t })) === null || _a === void 0 ? void 0 : _a.isExact) === true; });
+            return res ? true : false;
+        }
+        return false;
+    };
     return (React.createElement(Container$1, null, links.map(function (entry) {
         var Icon = Icons$1[entry.icon];
         var iconElement = React.createElement(Icon, { width: "24px", mr: "14px" });
         var calloutClass = entry.calloutClass ? entry.calloutClass : undefined;
         if (entry.items) {
-            return (React.createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname; })) + 1, className: calloutClass }, isPushed &&
-                entry.items.map(function (item) { return (React.createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname, onClick: handleClick },
+            return (React.createElement(Accordion, { key: entry.label, isPushed: isPushed, pushNav: pushNav, icon: iconElement, label: entry.label, initialOpenState: (entry.items.findIndex(function (t) { return t.isActive || t.href === location.pathname || checkChildren(t.children); })) + 1, className: calloutClass }, isPushed &&
+                entry.items.map(function (item) { return (React.createElement(MenuEntry, { key: item.href, secondary: true, isActive: item.isActive || item.href === location.pathname || checkChildren(item.children), onClick: handleClick },
                     React.createElement(MenuLink, { href: item.href },
                         React.createElement("span", null, item.label)))); })));
         }
