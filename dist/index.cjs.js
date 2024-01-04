@@ -3036,7 +3036,7 @@ var AccountModal = function (_a) {
     var _b;
     var connectorId = _a.connectorId, account = _a.account, profile = _a.profile, logout = _a.logout, _c = _a.onDismiss, onDismiss = _c === void 0 ? function () { return null; } : _c;
     var _d = React.useState(0), refresh = _d[1];
-    return (React__default['default'].createElement(Modal, { title: "Your wallet", onDismiss: onDismiss },
+    return (React__default['default'].createElement(Modal, { title: "Your Wallet", onDismiss: onDismiss },
         profile && (React__default['default'].createElement(Flex, { alignItems: "center", mb: "16px" },
             ((_b = profile.image) === null || _b === void 0 ? void 0 : _b.startsWith("http")) && (React__default['default'].createElement(StyledAvatar, { style: { marginLeft: "0px", marginRight: "10px" }, title: profile === null || profile === void 0 ? void 0 : profile.username },
                 React__default['default'].createElement("a", { target: "_blank", href: "https://app.bch.domains/name/" + (profile === null || profile === void 0 ? void 0 : profile.username), "aria-label": "Link to profile" },

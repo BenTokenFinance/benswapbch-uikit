@@ -439,7 +439,7 @@ it("renders AccountModal correctly", () => {
               class="sc-bdfBwQ sc-hKgILt iEFWFe ESJmc"
               color="text"
             >
-              Your wallet
+              Your Wallet
             </h2>
           </div>
           <button

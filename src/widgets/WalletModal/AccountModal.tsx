@@ -23,7 +23,7 @@ const BAD_SRCS: { [_src: string]: true } = {}
 const AccountModal: React.FC<Props> = ({ connectorId,account, profile, logout, onDismiss = () => null }) => { 
   const [, refresh] = useState<number>(0)
   return (
-    <Modal title="Your wallet" onDismiss={onDismiss}>
+    <Modal title="Your Wallet" onDismiss={onDismiss}>
       {profile && (
         <Flex alignItems={"center"} mb="16px">
           {profile.image?.startsWith("http") && (
