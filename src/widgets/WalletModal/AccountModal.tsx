@@ -54,8 +54,8 @@ const AccountModal: React.FC<Props> = ({ connectorId,account, profile, logout, o
         {account}
       </Text>
       <Flex mb="32px">
-        <LinkExternal small href={`https://sonar.cash/address/${account}`} mr="16px">
-          View on Sonar
+        <LinkExternal small href={`https://smartscout.cash/address/${account}`} mr="16px">
+          View on SmartScout
         </LinkExternal>
         <CopyToClipboard toCopy={account}>Copy Address</CopyToClipboard>
       </Flex>
