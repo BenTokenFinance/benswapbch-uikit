@@ -14,7 +14,8 @@ interface Props {
 
 const UserBlock: React.FC<Props> = ({ account, profile, login, logout,connectorId }) => {
   const { onPresentConnectModal, onPresentAccountModal } = useWalletModal(login, logout, account, profile,connectorId);
-  const accountEllipsis =account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null;
+  const accountEllipsis = profile?.username ? profile?.username :
+    (account ? `${account.substring(0, 4)}...${account.substring(account.length - 4)}` : null);
     return (
     <div>
       {account ? (
