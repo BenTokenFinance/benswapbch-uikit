@@ -181,9 +181,9 @@ export const socials = [
     ],
   },
   {
-    label: "Twitter",
-    icon: "TwitterIcon",
-    href: "https://twitter.com/BenTokenFinanc1",
+    label: "X.com",
+    icon: "XIcon",
+    href: "https://x.com/BenTokenFinanc1",
   }
 ];
 
